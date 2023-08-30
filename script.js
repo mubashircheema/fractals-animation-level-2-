@@ -83,7 +83,7 @@ window.addEventListener("load" ,()=>{
 
     function randomizedFractal(){
     sides=Math.floor(Math.random()*7+2);
-    scale=Math.random()*0.4+0.2;
+    scale=Math.random()*0.4+0.4;
     spread=Math.random()*2.9+0.1;
     color = 'hsl('+ Math.random()*360 +', 100%, 50%)'
     lineWidth = Math.random ()*20+10; 
@@ -116,6 +116,16 @@ window.addEventListener("load" ,()=>{
         label_sides.innerText= 'sides:' + sides;
     } 
     updateSlider()
+    window.addEventListener('resize', function(){
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight; 
+        let size =canvas.width < canvas.height ? canvas.width*0.3 : canvas.height*0.3;
+        ctx.shadowColor ="rgba(0,0,0,0.7)"
+        ctx.shadowOffsetX=10;
+        ctx.shadowOffsetY=5;
+        ctx.shadowBlur=10;
+        drawfractal()
+    })
 
    
  
