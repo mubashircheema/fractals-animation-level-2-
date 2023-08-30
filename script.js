@@ -4,7 +4,6 @@ window.addEventListener("load" ,()=>{
     canvas.width=window.innerWidth;
     canvas.height=window.innerHeight;  
     //canvas stettings
-    
     ctx.lineCap='round';
     ctx.shadowColor ="rgba(0,0,0,0.7)"
     ctx.shadowOffsetX=10;
@@ -13,10 +12,10 @@ window.addEventListener("load" ,()=>{
     //effect setting
     let size =canvas.width < canvas.height ? canvas.width*0.3 : canvas.height*0.3;
     const branches=2;
-    const maxlevel=4;
+    const maxlevel=5;
     let sides=5;
-    let spread=0.5;
-    let scale=0.5;
+    let spread=0.6;
+    let scale=0.7;
     let color = 'hsl('+ Math.random()*360 +', 100%, 50%)' ;
     let lineWidth = Math.random ()*20+10; 
     //control
@@ -56,12 +55,12 @@ window.addEventListener("load" ,()=>{
             drawBranches(level+1)
             ctx.restore();
 
-            ctx.save();
-            ctx.rotate(-spread)
-            drawBranches(level+1)
-            ctx.restore();
+            
             ctx.restore();
         }
+            ctx.beginPath();
+            ctx.arc(0,size,size*0.2,0,Math.PI * 2)
+            ctx.fill();
        
     }
     function drawfractal(){
@@ -69,10 +68,12 @@ window.addEventListener("load" ,()=>{
         ctx.save();
         ctx.lineWidth=lineWidth;
         ctx.strokeStyle= color;
+        ctx.fillStyle=color;
         ctx.translate(canvas.width/2,canvas.height/2)
         for( let i=0; i<sides; i++){
             ctx.rotate((Math.PI*2)/sides);
             drawBranches(0);
+            
         }
         ctx.restore()
         randomizedButton.style.backgroundColor= color;
